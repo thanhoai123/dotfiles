@@ -1,0 +1,6 @@
+# Cau hinh markdownlint (ap dung cho moi file .md duoi thu muc nha)
+config:
+  MD013: false   # do dai dong
+  MD060: false   # kieu cot trong bang
+  MD022: false   # dong trong quanh tieu de
+  MD032: false   # dong trong quanh danh sach
