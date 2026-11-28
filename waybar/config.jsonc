@@ -1,0 +1,98 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 34,
+  "spacing": 4,
+  "margin-top": 6,
+  "margin-left": 8,
+  "margin-right": 8,
+
+  "modules-left":   ["hyprland/workspaces", "hyprland/submap"],
+  "modules-center": ["clock"],
+  "modules-right":  ["tray", "cpu", "temperature", "backlight", "pulseaudio", "bluetooth", "network", "battery"],
+
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "on-click": "activate",
+    "format-icons": {
+      "1": "1", "2": "2", "3": "3", "4": "4", "5": "5",
+      "6": "6", "7": "7", "8": "8", "9": "9",
+      "urgent": "", "default": "·"
+    },
+    "persistent-workspaces": { "*": 5 }
+  },
+
+  "hyprland/submap": { "format": "✦ {}", "tooltip": false },
+
+  "clock": {
+    "format": "{:%H:%M}",
+    "format-alt": "{:%a %d/%m/%Y  %H:%M}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "month",
+      "weeks-pos": "right",
+      "format": {
+        "months":  "<span color='#f9e2af'><b>{}</b></span>",
+        "weekdays":"<span color='#89b4fa'><b>{}</b></span>",
+        "today":   "<span color='#f38ba8'><b>{}</b></span>"
+      }
+    }
+  },
+
+  "cpu": { "format": "󰻠 {usage}%", "interval": 5, "on-click": "alacritty -e btop" },
+
+  "temperature": {
+    // k10temp (nhiệt CPU). Dùng đường dẫn PCI vì số hwmonN đổi mỗi lần boot.
+    "hwmon-path-abs": "/sys/devices/pci0000:00/0000:00:18.3/hwmon",
+    "input-filename": "temp1_input",
+    "critical-threshold": 85,
+    "format": "{icon} {temperatureC}°C",
+    "format-icons": ["", "", ""],
+    "tooltip": false
+  },
+
+  "backlight": {
+    "format": "{icon} {percent}%",
+    "format-icons": ["󰃞", "󰃟", "󰃠"],
+    "on-scroll-up": "brightnessctl set 5%+",
+    "on-scroll-down": "brightnessctl set 5%-"
+  },
+
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "󰝟 tắt",
+    "format-bluetooth": "󰂯 {volume}%",
+    "format-icons": { "headphone": "󰋋", "default": ["󰕿", "󰖀", "󰕾"] },
+    "on-click": "pavucontrol",
+    "scroll-step": 5
+  },
+
+  "bluetooth": {
+    "format": "󰂯",
+    "format-disabled": "󰂲",
+    "format-connected": "󰂱 {num_connections}",
+    "tooltip-format": "{device_alias}",
+    "on-click": "blueman-manager"
+  },
+
+  "network": {
+    "format-wifi": "󰤨 {signalStrength}%",
+    "format-ethernet": "󰈀",
+    "format-disconnected": "󰤭",
+    "tooltip-format-wifi": "{essid}  ({signalStrength}%)\n{ipaddr}",
+    "tooltip-format-ethernet": "{ifname}\n{ipaddr}",
+    "on-click": "nm-connection-editor"
+  },
+
+  "battery": {
+    "bat": "BAT1",
+    "states": { "warning": 25, "critical": 12 },
+    "format": "{icon} {capacity}%",
+    "format-charging": "󰂄 {capacity}%",
+    "format-plugged": "󰚥 {capacity}%",
+    "format-icons": ["󰁺","󰁼","󰁾","󰂀","󰂂","󰁹"],
+    "tooltip-format": "{timeTo}  ({power:.1f}W)"
+  },
+
+  "tray": { "icon-size": 17, "spacing": 8 }
+}

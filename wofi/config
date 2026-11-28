@@ -1,0 +1,16 @@
+show=drun
+width=620
+height=420
+location=center
+always_parse_args=true
+show_all=false
+print_command=true
+insensitive=true
+prompt=Tìm ứng dụng…
+layer=overlay
+allow_images=true
+image_size=28
+term=alacritty
+matching=fuzzy
+no_actions=true
+gtk_dark=true

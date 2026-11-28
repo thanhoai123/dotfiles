@@ -17,7 +17,21 @@ link() {  # link <nguon trong repo> <dich>
   ln -s "$src" "$dst"; echo "link   $dst -> $src"
 }
 
-link "$DIR/nvim"                              "${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
+CFG="${XDG_CONFIG_HOME:-$HOME/.config}"
+
+link "$DIR/nvim"                              "$CFG/nvim"
 link "$DIR/tmux/tmux.conf"                    "$HOME/.tmux.conf"
 link "$DIR/markdownlint/markdownlint-cli2.yaml" "$HOME/.markdownlint-cli2.yaml"
+link "$DIR/alacritty"                         "$CFG/alacritty"
+
+# Hyprland va cac thanh phan Wayland chi danh cho Linux. Tren macOS thi bo qua.
+if [ "$(uname -s)" = "Linux" ]; then
+  link "$DIR/hypr"   "$CFG/hypr"
+  link "$DIR/waybar" "$CFG/waybar"
+  link "$DIR/wofi"   "$CFG/wofi"
+  link "$DIR/mako"   "$CFG/mako"
+else
+  echo "skip   cau hinh Hyprland (chi chay tren Linux)"
+fi
+
 echo "Xong. Mo nvim lan dau de LazyVim tu cai plugin."
